@@ -2,6 +2,7 @@ import Vue from 'vue';
 import {
   TimePicker,
   Button,
+  Input,
 } from 'element-ui';
 
 import App from './App';
@@ -12,6 +13,7 @@ if (!process.env.IS_WEB) Vue.use(require('vue-electron'));
 const eleComp = [
   TimePicker,
   Button,
+  Input,
 ];
 eleComp.forEach(comp => Vue.use(comp));
 

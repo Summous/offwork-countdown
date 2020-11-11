@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import dayjs from 'dayjs';
+  // import dayjs from 'dayjs';
   import { ipcRenderer } from 'electron';
   import gif from '../../assets/img/cxk.gif';
   import jntm from '../../assets/audio/jntm.mp3';
@@ -29,13 +29,12 @@
       });
       this.$nextTick(() => {
         setInterval(() => {
-          const setTime = dayjs(this.time);
-          const now = dayjs();
-          const seconds = setTime.diff(now, 'second') % 60;
-          const minutes = setTime.diff(now, 'minute') % 60;
-          const hours = setTime.diff(now, 'hour');
-          this.tips = Boolean(this.$route.query.reach === 'true') ?
-            '下班啦!!!!!!' : `距离下班还有: ${hours}小时 ${minutes}分钟 ${seconds}秒`;
+          // const setTime = dayjs(this.time);
+          // const now = dayjs();
+          // const seconds = setTime.diff(now, 'second') % 60;
+          // const minutes = setTime.diff(now, 'minute') % 60;
+          // const hours = setTime.diff(now, 'hour');
+          this.tips = '打工人，该休息了！！！';
         }, 1000);
       });
     },
