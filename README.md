@@ -1,4 +1,4 @@
-# offwork-countdown
+# rest-countdown
 
 > An electron-vue project
 
