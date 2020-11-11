@@ -1,5 +1,5 @@
 <template>
-  <div style="text-align: center;">
+  <div style="text-align: center;position:relative; top: 50px;">
     <el-time-picker
       v-model="time"
       placeholder="请选择结束时间"

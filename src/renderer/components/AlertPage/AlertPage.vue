@@ -52,6 +52,7 @@
     overflow: hidden;
   }
   .alert-tips {
+    font-family: bold;
     position: absolute;
     width: 300px;
     height: 50px;
