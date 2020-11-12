@@ -2,13 +2,14 @@
   <div style="text-align: center;position:relative; top: 50px;">
     <el-time-picker
       v-model="time"
+      :disabled="!!timer"
       placeholder="请选择结束时间"
       value-format="HH:mm"
        style="width: 240px"
     >
     </el-time-picker>
     <div style="margin-top: 10px;">
-      <el-input v-model="input"  placeholder="请选择间隔（分钟，默认整点）" style="width: 240px" :min="1" type="number"></el-input>  
+      <el-input :disabled="!!timer" v-model="input"  placeholder="请选择间隔（分钟，默认整点）" style="width: 240px" :min="1" type="number"></el-input>  
     </div>
     <div style="margin-top: 10px;">
       <el-button
