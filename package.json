@@ -1,8 +1,8 @@
 {
-  "name": "offwork-countdown",
-  "productName": "offwork-countdown",
+  "name": "rest-countdown",
+  "productName": "rest-countdown",
   "version": "0.0.1",
-  "author": "tangjiahao <tangjiahao@shein.com>",
+  "author": "summous <xdy20112012@163.com>、tangjiahao <tangjiahao@shein.com>",
   "description": "An electron-vue project",
   "license": null,
   "main": "./dist/electron/main.js",
