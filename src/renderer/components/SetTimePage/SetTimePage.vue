@@ -46,7 +46,13 @@
     computed: {
       showNextTime() {
         const setTime = new Date(this.nextTime * 1000);
-        return this.nextTime ? `${setTime.getHours()}:${setTime.getMinutes()}:${setTime.getSeconds()}` : `${new Date().getHours() + 1}:00:00`;
+        const hours = setTime.getHours();
+        const minutes = setTime.getMinutes();
+        const seconds = setTime.getSeconds();
+        const nextTime = new Date().getHours() + 1;
+        return this.nextTime ?
+          `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : '' && '0'}${seconds}` :
+          `${nextTime < 10 ? '0' : ''}${nextTime}:00:00`;
       },
     },
     methods: {
@@ -94,10 +100,14 @@
         this.timer = setInterval(() => {
           console.log(parseInt(new Date().getTime() / 1000, 10), this.nextTime);
           const check = this.input ? this.checkTime(this.nextTime < setTime ?
-            this.nextTime : setTime, this.nextTime > setTime) : this.checkTime(setTime);
+            this.nextTime : setTime, this.nextTime !== setTime) : this.checkTime(setTime);
           if (check) {
             if (this.input) {
               this.nextTime = this.nextTime + (this.input * 60);
+              // 下次提醒时间大于技术时间
+              if (this.nextTime > setTime) {
+                this.nextTime = setTime;
+              }
             }
             ipcRenderer.send('open-alert-dialog', check.reach, setTime);
             // 到达设定的时间则清除定时器
@@ -114,14 +124,14 @@
        * @param {Bollean} isInput 输入时间间隔
        * @return {Object} 结束标志 { reach: true }、 { reach: false }、 null
        */
-      checkTime(time, isInput = true) {
+      checkTime(time, isInput = false) {
         const now = new Date();
         if (parseInt(now.getTime() / 1000, 10) === time) {
           return {
-            reach: isInput,
+            reach: !isInput,
           };
         }
-        return isInput && now.getMinutes() === 0 && now.getSeconds() === 0 ? {
+        return !isInput && now.getMinutes() === 0 && now.getSeconds() === 0 ? {
           reach: false,
         } : null;
       },
