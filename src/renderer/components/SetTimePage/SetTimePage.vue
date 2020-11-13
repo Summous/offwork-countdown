@@ -9,7 +9,7 @@
     >
     </el-time-picker>
     <div style="margin-top: 10px;">
-      <el-input :disabled="!!timer" v-model="input"  placeholder="请选择间隔（分钟，默认整点）" style="width: 240px" :min="1" type="number"></el-input>  
+      <el-input :disabled="!!timer" v-model="input"  placeholder="请选择间隔（分钟，默认整点）" style="width: 240px" :min="0" type="number"></el-input>  
     </div>
     <div style="margin-top: 10px;">
       <el-button
@@ -126,7 +126,9 @@
        */
       checkTime(time, isInput = false) {
         const now = new Date();
-        if (parseInt(now.getTime() / 1000, 10) === time) {
+        const cur = parseInt(now.getTime() / 1000, 10) - time;
+        // 误差2秒
+        if (cur >= 0 && cur <= 2) {
           return {
             reach: !isInput,
           };
